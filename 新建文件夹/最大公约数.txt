@@ -1,0 +1,16 @@
+# include<stdio.h>
+int main() {
+	int x = 161, y = 112; int i = x %y;
+	for (;;) {
+
+		if (i == 0) {
+			printf("%d ", y);
+			return 0;
+		}
+		else {
+			x = y, y = i;
+			i = x % y;
+		}
+	}
+	return 0;
+}
