@@ -1,0 +1,16 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+void main()
+{
+	
+	int i = 1;   
+	double sum;     
+	int   n = -1;  
+	for (sum = 0; i <= 100; ++i)
+	{
+		n = -n; 
+		sum = (sum + (1.0 / i*n));
+	}
+	printf("计算结果是 %.6f\n", sum);
+	return 0;
+}
