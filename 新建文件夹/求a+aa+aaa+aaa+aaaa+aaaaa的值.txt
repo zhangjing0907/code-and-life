@@ -1,0 +1,15 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+int main() {
+	int x=0,num,a[5],result=0;
+	printf("请输入一个值:");
+	scanf("%d", &x);
+	int c = x;
+	for (num=0; num < 5; ++num) {
+		a[num] = x;
+		x = x * 10 + 2;
+		result += a[num];
+	}
+	printf("%d+%d+%d+%d+%d=%d", a[0], a[1], a[2], a[3], a[4], result);
+	return 0;
+}
