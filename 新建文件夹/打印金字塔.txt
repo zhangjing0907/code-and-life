@@ -1,0 +1,21 @@
+#include<stdio.h>
+#include<string.h>
+#include<Windows.h>
+int main() {
+	char str1[] = "*************";
+	char str2[] = "             ";
+	char str3[] = "             ";
+	int left = 0, row = 0;
+	int right = strlen(str2) - 1;
+		for (row = 1; row <= 7; ++row) {
+				str2[left] = str1[left];
+				++left;
+				printf("%s\n", str2);	
+		}
+		for (int i=1; i <= 7; ++i) {
+			left=left-1;
+			str2[left] = str3[left];	
+			printf("%s\n", str2);
+		}
+	return 0;
+}
