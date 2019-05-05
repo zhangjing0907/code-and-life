@@ -1,0 +1,62 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<time.h>
+int Meau() {
+	printf("==============\n");
+	printf("请输入您的选项\n");
+	printf("1.开始游戏\n");
+	printf("2.结束游戏\n");
+	printf("=============\n");
+	int choice = 0;
+	scanf("%d", &choice);
+	return choice;
+}
+int main() {
+
+	while (1) {
+		int choice = Meau();
+		if (choice == 1) {
+			goto again;
+		}
+		else if (choice == 2) {
+			printf("goodbye\n");
+			system("pause");
+			return 0;
+		}
+		else {
+			printf("请重新输入\n");
+		}
+	}
+again:
+	srand((unsigned int)time(0)); {
+		int to_guess = rand() % 100 + 1, c = 0;int x = 0,y=100;
+		for (int num = 1; num <= 5; ++num) {
+					printf("请输入%d到%d的整数\n", x ,y);
+					int z = 0;
+				scanf("%d", &z);
+				if (z<x||z>y) {
+					printf("请看提示\n");
+					--num;
+					continue;
+				}
+				if (z < to_guess) {
+					printf("低了\n");
+					x = z+1;
+					
+				}
+				if (z>to_guess) {
+					printf("高了\n");			
+					y = z-1;
+				}
+				if (z == to_guess) {
+					printf("恭喜你猜对了\n");
+					return 0;
+				}
+			
+			if (num == 5) {
+				printf("您输了\n");
+				return 0;
+			}
+		}
+	}
+}
