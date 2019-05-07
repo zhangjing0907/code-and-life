@@ -1,0 +1,17 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+void jud(int year) {
+	if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
+		printf("是润年");
+	}
+	else {
+		printf("不是润年");
+	}
+}
+int main() {
+	int year = 0;
+	printf("请输入一个年份:");
+	scanf("%d", &year);
+	jud(year);
+	return 0;
+}
