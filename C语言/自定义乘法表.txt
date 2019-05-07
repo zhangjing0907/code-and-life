@@ -1,0 +1,18 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+void mul(int row,int col) {
+	int x=0;
+	printf("请输入一个正整数:");
+	scanf("%d", &x);
+	for (row = 1; row <= x; ++row) {
+		for (col = 1; col <= row; ++col) {
+			printf("%d*%d=%d ", row, col, row*col);
+		}
+		printf("\n");
+	}
+}
+int main() {
+	int x = 0,y=0;
+	mul(x,y);
+	return 0;
+}
