@@ -1,0 +1,18 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<math.h>
+#include<stdio.h>
+int myPow(int x, int k) {
+	pow(x, k);
+	int i;
+	if(k==1) {
+		return x;
+	}
+	return x*myPow(x, k - 1);
+}
+int main() {
+	int x, k;
+	printf("请输入一个整数,一个次方数\n");
+	scanf("%d %d", &x, &k);
+	printf("%d", myPow(x, k));
+	return 0;
+}
