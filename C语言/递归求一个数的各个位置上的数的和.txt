@@ -1,0 +1,17 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+int DigitSum(int x) {
+		int i = x  % 10;
+		if (x < 10) {
+			return i;
+		}
+			return i += DigitSum(x / 10);	
+}
+int main() {
+	int x=0;
+	printf("请输入一个整数\n");
+	scanf("%d", &x);
+	printf("%d", DigitSum(x));
+
+	return 0;
+}
