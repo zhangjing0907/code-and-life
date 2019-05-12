@@ -1,0 +1,116 @@
+void SeqListInit(PSeq ps, int capacity) {//初始化
+ps->_array = (DataType*)malloc(sizeof(DataType) * (capacity));
+if (NULL == ps->_array) {
+assert(0);
+return;
+}
+ps->_capacity = 10;
+ps->_size = 0;
+}
+
+void SeqListPushBack(PSeq ps, DataType data) {// 在顺序表的尾部插入值为data的元素
+assert(ps);
+ps->_array[ps->_size] = data;
+ps->_size++;
+}
+
+void SeqListPopBack(PSeq ps) {// 删除顺序表最后一个元素
+assert(ps);
+ps->_size–;
+}
+
+void SeqListPushFront(PSeq ps, DataType data) {// 在顺序表的头部插入值为data的元素
+for (int i = ps->_size; i > 0; --i) {
+ps->_array[i] = ps->_array[i - 1];
+}
+ps->_array[0] = data;
+ps->_size++;
+}
+
+void SeqListPopFront(PSeq ps) {// 删除顺序表头部的元素
+for (int i = 0; i < ps->_size - 1; ++i) {
+ps->_array[i] = ps->_array[i + 1];
+}
+ps->_size–;
+}
+
+void SeqListInsert(PSeq ps, int pos, DataType data) {// 在顺序表pos位置插入值为data的元素
+for (int i = ps->_size; i > pos; --i) {
+ps->_array[i] = ps->_array[i - 1];
+}
+ps->_array[pos] = data;
+ps->_size++;
+}
+
+void SeqListErase(PSeq ps, int pos) {// 删除顺序表中pos位置上的元素
+for (int i = pos; i < ps->_size; ++i) {
+ps->_array[i] = ps->_array[i + 1];
+}
+ps->_size–;
+}
+
+int SeqListFind(PSeq ps, DataType data) {// 在顺序表中查找值为data的元素，找到返回该元素在顺序表中的下标，否则返回-1
+for (int i = 0; i < ps->_size; ++i) {
+if (ps->_array[i] == data) {
+return i;
+}
+}
+return -1;
+}
+
+int SeqListEmpty(PSeq ps) {// 检测顺序表是否为空，如果为空返回非0值，非空返回0
+if (NULL == ps->_array) {
+return 0;
+}
+return 1;
+}
+
+int SeqListSize(PSeq ps) {// 返回顺序表中有效元素的个数
+return ps->_size;
+}
+
+int SeqListCapacity(PSeq ps) {// 返回顺序表的容量大小
+return ps->_capacity;
+}
+
+void SeqListClear(PSeq ps) {// 将顺序表中的元素清空
+ps->_size = 0;
+}
+
+void SeqListRemove(PSeq ps, DataType data) {// 删除顺序表中第一个值为data的元素
+SeqListErase(ps, SeqListFind(ps, data));
+}
+
+void SeqListDestroy(PSeq ps) {// 销毁顺序表
+if (ps->_array) {
+free(ps->_array);
+ps->_array = NULL;
+ps->_capacity = 0;
+ps->_size = 0;
+}
+}
+
+void CheckCapacity(PSeq ps) {// 顺序表的扩容
+assert(ps);
+if (ps->_size == ps->_capacity) {
+int newcapacity = ps->_capacity * 2;
+int* pTemp = (DataType*)malloc(newcapacity * sizeof(DataType));
+if (NULL == pTemp) {
+assert(0);
+return;
+}
+for (int i = 0; i < ps->_size; ++i) {
+pTemp[i] = ps->_array[i];
+}
+free(ps->_array);
+ps->_array = pTemp;
+ps->_capacity = newcapacity;
+}
+}
+
+void PrintSeqList(PSeq ps) {
+for (int i = 0; i < ps->_size; ++i) {
+printf(" %d “, ps->_array[i]);
+}
+putchar(”\n");
+}
