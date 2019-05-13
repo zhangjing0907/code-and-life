@@ -1,0 +1,23 @@
+#include <stdio.h>  
+#include<assert.h>  
+#include<Windows.h>
+char* Strcat(char* dest, char* src){
+	char *cp = dest;
+	assert(src && dest);
+	while (*dest != '\0'){
+	
+		dest++;
+	}
+	while (*dest = *src){
+		++dest;
+		++src;
+	}
+	return cp;
+}
+int main(){
+	char dest[32] = "abcd";
+	char src[32] = "1234";
+	printf("%s\n", Strcat(dest, src));
+	system("pause");
+	return 0;
+}
