@@ -1,0 +1,25 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+int main() {
+	int i = 0;
+	scanf("%d", &i);
+	int row = 0, col = 0;
+	int arr[3][3] = { {1,2,3},
+	                  {2,3,4},
+	                  {3,4,5} };
+	for (row = 0; row < 3; ++row) {
+		for (col = 0; col < 3; ++col) {
+			if (arr[row][col] == i) {
+				printf("%d %d\n", row, col);
+				break;
+			}
+			else if (arr[row][col] > i) {
+				break;
+			}
+			else {
+				continue;
+			}
+		}
+	}
+	return 0;
+}
