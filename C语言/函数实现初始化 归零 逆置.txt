@@ -1,0 +1,42 @@
+#include<stdio.h>
+#include<string.h>
+//初始化数组
+void init(int data[], int in[], int n) {
+	int i;
+	for (i = 0; i < n; ++i) {
+		data[i] = in[i];
+		printf("%d", data[i]);
+	}
+	printf("\n");
+}
+
+//清空数组
+void empty(int data[],int n) {
+int i;
+for (i = 0; i< n; ++i) {
+data[i] = 0;
+printf( "%d", data[i]);
+}
+printf("\n");
+}
+//逆置
+void reverse(int data[],int n) {
+int tmp;
+int i, j;
+for (i = 0, j = n - 1; i < j; ++i, --j) {
+tmp = data[i];
+data[i] = data[j];
+data[j] = tmp;
+}
+for (int i = 0; i < 5; ++i) {
+	printf("%d", data[i]);
+}
+printf("\n");
+}
+int main() {
+	int arr[5], arr1[5] = { 5, 4, 3, 2, 1 };
+	init(arr, arr1, 5);
+	reverse(arr1, 5);
+	empty(arr1, 5);
+	return 0;
+}
