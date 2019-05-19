@@ -1,0 +1,19 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+int mul(int n) {
+	while (1) {
+		if (n < 2) {
+			return 1;
+		}
+		else {
+			return n*mul(n - 1);
+		}
+	}
+}
+int main() {
+	int x = 0;
+	printf("请输入一个整数");
+	scanf("%d", &x);
+	printf("%d", mul(x));
+	return 0;
+}
