@@ -1,0 +1,293 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+#define FILE_TXT “D:/文档/test.txt”
+#define MAX_PERSON_INFO_SIZE 1000
+typedef struct PersonInfo {
+char name[1024];//姓名
+char sex[1024];//性别
+char age[1024];//年龄
+char phone[1024];//电话
+char address[1024];//住址
+}PersonInfo;
+typedef struct AddressBook {
+PersonInfo persons[MAX_PERSON_INFO_SIZE];//最大可存储1000人信息
+int size;//[0,size)
+}AddressBook;
+AddressBook g_address_book;
+void Init() {//使用前先进行初始化
+g_address_book.size = 0;
+for (int i = 0; i < MAX_PERSON_INFO_SIZE; ++i) {
+g_address_book.persons[i].name[0] = ‘\0’;
+g_address_book.persons[i].sex[0] = ‘\0’;
+g_address_book.persons[i].age[0] = ‘\0’;
+g_address_book.persons[i].phone[0] = ‘\0’;
+g_address_book.persons[i].address[0] = ‘\0’;
+}
+}
+int Menu() {
+printf("\n");
+printf(" 通讯录 \n");
+printf(" 1、新增联系人 \n");
+printf(" 2、删除联系人 \n");
+printf(" 3、查找联系人 \n");
+printf(" 4、修改联系人信息 \n");
+printf(" 5、显示所有联系人信息 \n");
+printf(" 6、清空联系人 \n");
+printf(" 7、排序联系人 \n");
+printf(" 8、保存联系人到文件 \n");
+printf(" 9、加载联系人 \n");
+printf(" 0、退出程序 \n");
+printf("\n");
+printf(" 请输入您的选择： \n");
+int choice = 0;
+scanf("%d", &choice);
+return choice;
+}
+
+void Empty() {
+//该函数不做任何操作，为了在转移表中凑一个数
+}
+
+void AddPersonInfo() {
+printf(“新增联系人\n”);
+if (g_address_book.size >= MAX_PERSON_INFO_SIZE) {
+printf(“新增联系人失败！\n”);
+return;
+}
+PersonInfo* person_info = &g_address_book.persons[g_address_book.size];
+printf(“请输入联系人姓名：”);
+scanf("%s",person_info->name);
+printf(“请输入联系人性别：”);
+scanf("%s", person_info->sex);
+printf(“请输入联系人年龄：”);
+scanf("%s", person_info->age);
+printf(“请输入联系人电话：”);
+scanf("%s", person_info->phone);
+printf(“请输入联系人住址：”);
+scanf("%s", person_info->address);
+++g_address_book.size;
+printf(“新增联系人成功！\n”);
+}
+
+void DelPersonInfo() {
+printf(“删除联系人\n”);
+if (g_address_book.size <= 0) {
+printf(“删除失败，通讯录为空！\n”);
+return;
+}
+printf(“请输入您要删除的联系人序号：”);
+int id = 0;
+scanf("%d", &id);
+if (id<0 || id>g_address_book.size) {
+printf(“删除失败，输入的序号有误！\n”);
+return;
+}
+printf(“您确定要删除以下联系人的信息吗？\n”);
+PersonInfo* info = &g_address_book.persons[id];
+printf("[%d]\t%s\t%s\t%s\t%s\t%s\t\n", id, info->name,
+info->sex, info->age, info->phone, info->address);
+while (1) {
+printf(“请输入您的选择：（Y/N）\n”);
+char choice[1024] = { 0 };
+scanf("%s", choice);
+if (strcmp(choice, “Y”) == 0) {
+g_address_book.persons[id] = g_address_book.persons[g_address_book.size - 1];
+–g_address_book.size;
+printf(“删除联系人成功！\n”);
+return;
+}
+else if (strcmp(choice, “N”) == 0) {
+printf(“删除联系人取消！\n”);
+return;
+}
+else {
+printf(“您的输入有误！\n”);
+continue;
+}
+}
+}
+
+void FindPersonInfo() {
+printf(“查找联系人！\n”);
+if (g_address_book.size <= 0) {
+printf(“查找失败，通讯录为空！\n”);
+return;
+}
+//根据姓名查找联系人信息
+printf(“请输入您要查找的联系人姓名：”);
+char name[1024] = { 0 };
+scanf("%s", name);
+for (int i = 0; i < g_address_book.size; ++i) {
+PersonInfo* info = &g_address_book.persons[i];
+if (strcmp(name, info->name) == 0) {
+printf("[%d]\t%s\t%s\t%s\t%s\t%s\t\n", i, info->name,
+info->sex, info->age, info->phone, info->address);
+}
+}
+printf(“查找联系人成功！\n”);
+}
+
+void UpdatePersonInfo() {
+printf(“更新联系人\n”);
+if (g_address_book.size <= 0) {
+printf(“修改失败，通讯录为空！\n”);
+return;
+}
+printf(“请输入要修改的联系人序号：”);
+int id = 0;
+scanf("%d", &id);
+if (id < 0 || id >= g_address_book.size) {
+printf(“输入的序号有误，修改失败！\n”);
+return;
+}
+PersonInfo* info = &g_address_book.persons[id];
+printf(“请输入新的姓名：（%s）”, info->name);
+char name[1024] = { 0 };
+scanf("%s", name);
+if (strcmp(name, “”) != 0) {
+strcpy(info->name, name);
+}
+printf(“请输入新的性别：（%s）”, info->sex);
+char sex[1024] = { 0 };
+scanf("%s", sex);
+if (strcmp(sex, “”) != 0) {
+strcpy(info->sex, sex);
+}
+printf(“请输入新的年龄：（%s）”, info->age);
+char age[1024] = { 0 };
+scanf("%s", age);
+if (strcmp(age, “”) != 0) {
+strcpy(info->age, age);
+}
+printf(“请输入新的电话：（%s）”, info->phone);
+char phone[1024] = { 0 };
+scanf("%s", phone);
+if (strcmp(phone, “”) != 0) {
+strcpy(info->phone, phone);
+}
+printf(“请输入新的地址：（%s）”, info->address);
+char address[1024] = { 0 };
+scanf("%s", address);
+if (strcmp(address, “”) != 0) {
+strcpy(info->address, address);
+}
+printf(“更新联系人信息成功！\n”);
+}
+
+void PrintAllPersonInfo() {
+printf(“打印全部联系人\n”);
+int i = 0;
+printf(“序号\t姓名\t性别\t年龄\t电话\t地址\t\n”);
+for (; i < g_address_book.size; ++i) {
+PersonInfo* info = &g_address_book.persons[i];
+printf("[%d]\t%s\t%s\t%s\t%s\t%s\t\n", i,info->name,
+info->sex, info->age, info->phone, info->address);
+}
+printf(“共打印了%d条联系人信息\n”, i);
+printf(“打印全部联系人成功！\n”);
+}
+
+void ClearAllPersonInfo() {
+printf(“清空联系人！\n”);
+printf(“请问您确定要清空所有联系人？”);
+printf(“请输入您的选择：（Y/N）”);
+char choice[1024] = { 0 };
+scanf("%s", choice);
+if (strcmp(choice, “Y”) == 0) {
+g_address_book.size = 0;
+printf(“清空联系人完成！\n”);
+return;
+}
+else if (strcmp(choice, “N”) == 0) {
+printf(“取消清空所有联系人！\n”);
+return;
+}
+else {
+printf(“您的输入有误！\n”);
+return;
+}
+}
+
+void SortPersonInfo() {
+printf(“排序联系人！\n”);
+//按照姓名的字典序来排序联系人信息
+int bound = 0;
+//冒泡排序的方法
+for (; bound < g_address_book.size; ++bound) {
+for (int cur = g_address_book.size - 1; cur > bound; --cur) {
+PersonInfo* info1 = &g_address_book.persons[cur-1];
+PersonInfo* info2 = &g_address_book.persons[cur];
+(strcmp(info1->name, info2->name));
+if((strcmp(info1->name, info2->name))>0){
+g_address_book.persons[g_address_book.size+1];
+g_address_book.persons[g_address_book.size + 1] = g_address_book.persons[cur];
+g_address_book.persons[cur] = g_address_book.persons[cur - 1];
+g_address_book.persons[cur - 1] = g_address_book.persons[g_address_book.size + 1];
+}
+}
+}
+printf(“排序联系人成功！\n”);
+}
+
+void FileSavePersonInfo() {
+printf(“保存联系人到文件\n”);
+FILE* pf = fopen(FILE_TXT, “w”);
+if (pf == NULL) {
+perror(“File opening failed”);
+exit(EXIT_FAILURE);
+}
+for (int i = 0; i < g_address_book.size; ++i) {
+fwrite(&(g_address_book.persons[i]), sizeof(PersonInfo), 1, pf);
+}
+fclose(pf);
+printf(“保存联系人到文件完成！\n”);
+}
+
+void LoadPersonInfo() {
+printf(“加载联系人\n”);
+FILE* pread = fopen(FILE_TXT, “r”);
+if (pread == NULL) {
+perror(“File reading failed”);
+exit(EXIT_FAILURE);
+}
+PersonInfo per = { 0 };
+for (int i = 0; fread(&per, sizeof(PersonInfo), 1, pread); ++i, ++g_address_book.size) {
+g_address_book.persons[i] = per;
+}
+fclose(pread);
+printf(“加载联系人完成！\n”);
+}
+
+typedef void(*Func)();
+int main() {
+//用转移表来完成用户选择输入调用相应函数
+Func arr[] = {
+Empty,
+AddPersonInfo,
+DelPersonInfo,
+FindPersonInfo,
+UpdatePersonInfo,
+PrintAllPersonInfo,
+ClearAllPersonInfo,
+SortPersonInfo,
+FileSavePersonInfo,
+LoadPersonInfo
+};
+Init();//初始化
+while (1) {
+int choice = Menu();
+if (choice < 0 || choice >= sizeof(arr) / sizeof(arr[0])) {
+printf(“您的输入有误，请重新输入！\n”);
+continue;
+}
+if (choice == 0) {
+printf(“goodbye!\n”);
+break;
+}
+arrchoice;
+}
+system(“pause”);
+return 0;
+}
