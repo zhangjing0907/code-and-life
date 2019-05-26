@@ -1,0 +1,24 @@
+#include<stdio.h>
+
+int ShellSort(int*a[]) {
+	int i = 10, b = 0;
+	for (i = 10; i > 0; i/=2) {
+		for (b = i; b <= 10; ++b) {
+			if (a[b] < a[b - i]) {
+				int tmp = a[b];
+				a[b] = a[b - i];
+				a[b - i] = tmp;
+			}
+		}
+	}
+	for (i = 0; i < 9; ++i) {
+		printf("%d<", a[i]);
+	}
+	printf("%d", a[i]);
+}
+
+int main() {
+	int a[10] = { 2,5,8,87,54,26,9,6,4,7 };
+	ShellSort(&a);
+	return 0;
+}
