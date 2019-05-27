@@ -1,0 +1,20 @@
+#include<stdio.h>
+#include "seqlist.h"
+
+int point(SList*s1, SList*s2) {
+	PNode pcur = s1->_pHead;
+	PNode ppur = s2->_pHead;
+	while (pcur != ppur&&pcur&&ppur) {
+		pcur = pcur->_PNext;
+		ppur = ppur->_PNext;
+	}
+	if (pcur&&ppur) {
+		return pcur;
+	}
+	return NULL;
+}
+
+int main() {
+	SList s1;
+	SList s2;
+}
