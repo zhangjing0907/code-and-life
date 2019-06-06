@@ -1,0 +1,21 @@
+实现memcpy
+//从最后一个字符开始往前拷贝,可以解决内存重叠的部分问题
+void* Mymemcpy(void* dest, const void* src, size_t count) {
+assert(dest != NULL);
+assert(src != NULL);
+char* p = (char*)dest+(count-1);
+const charp1 = (char)src+(count-1);
+while (count–) {
+p = p1;
+–p;
+–p1;
+}
+return dest;
+}
+int main() {
+char buf1[] = “welcome”;
+char buf2[64] = { 0 };
+Mymemcpy(buf2, buf1, 4);
+printf("%s\n", buf2);
+return 0;
+}
