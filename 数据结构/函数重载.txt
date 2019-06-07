@@ -1,0 +1,106 @@
+自然语言中，一个词可以有多重含义，人们可以通过上下文来判断该词真实的含义，即该词被重载了。
+比如：以前有一个笑话，国有两个体育项目大家根本不用看，也不用担心。一个是乒乓球，一个是男足。前
+者是“谁也赢不了！”，后者是“谁也赢不了！”
+
+函数重载概念：
+函数重载:是函数的一种特殊情况，C++允许在同一作用域中声明几个功能类似的同名函数，这些同名函数的形参列表(参数个数 或 类型 或 顺序)必须不同
+#include
+using namespace std;
+
+int Add(int left, int right) {
+return left + right;
+}
+
+double Add(double left, double right) {
+return left + right;
+}
+
+int Add(int left, double right) {
+return left + right;
+}
+
+int main() {
+Add(1, 2);
+Add(1.0, 2.0);
+Add(1, 2.0);
+return 0;
+}
+在这里插入图片描述我们都知道C++兼容C语言 那么C语言支持函数重载吗？下面我们来试一下
+#include<stdio.h>
+
+int Add(int left, int right)
+{
+return left + right;
+}
+
+double Add(double left, double right)
+{
+return left + right;
+}
+
+int Add(int left, double right)
+{
+return left + right;
+}
+
+int main() {
+printf("%d\n", Add(1, 2));
+printf("%d\n", Add(1.0, 2.0));
+printf("%d\n", Add(1, 2.0));
+return 0;
+}
+在这里插入图片描述答案是不可以
+那么问题来了 为什么C++可以而C语言不可以 C语言又为什么不可以 C++为什么可以呢？
+
+首先我们来看为什么C语言不可以：
+
+#include<stdio.h>
+
+int Add(int left, int right);
+//{
+// return left + right;
+//}
+
+//double Add(double left, double right);
+//{
+// return left + right;
+//}
+
+//int Add(int left, double right);
+//{
+// return left + right;
+//}
+
+int main() {
+printf("%d\n", Add(1, 2));
+return 0;
+}
+在这里插入图片描述我们可以看到C语言当中调用函数会把函数名字修改成前面加_（Add修改成_Add）;
+而当同时有两个函数名字都是Add时，编译器就会无法判断你调用的是哪个函数就会报错
+
+为什么C++可以
+#include
+using namespace std;
+
+int Add(int left, int right);
+//{
+// return left + right;
+//}
+
+double Add(double left, double right);
+//{
+// return left + right;
+//}
+
+int Add(int left, double right);
+//{
+// return left + right;
+//}
+
+int main() {
+cout << Add(1, 2) << “\n” << endl;
+cout << Add(1.0, 2.0) << “\n” << endl;
+cout << Add(1, 2.0) << “\n” << endl;
+return 0;
+}
+在这里插入图片描述而在C++中，函数的名字被修改成了(？Add@@YAHHH@Z)，而HHH这三个字母分别是函数的返回值类型，第一个参数的类型，第二个参数的类型，所以即使函数名字一样，但是是要参数类型或者函数返回值类型不一样，那么C++就会把你当成两个名字不同的函数来区分。
