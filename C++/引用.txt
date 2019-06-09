@@ -1,0 +1,15 @@
+#include<iostream>
+using namespace std;
+
+void TestRef()
+{
+	int a = 10;
+	int& ra = a;//<====定义引用类型
+	printf("%p\n", &a);
+	printf("%p\n", &ra);
+}
+
+int main() {
+	TestRef();
+	return 0;
+}
