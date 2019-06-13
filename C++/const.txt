@@ -1,0 +1,11 @@
+#include<iostream>
+using namespace std;
+
+int main() {
+	const int a = 10;
+	int* pa = (int*)&a;
+	*pa = 100;
+	cout << a <<  endl;//输出结果为10 因为a被替换成了10
+	cout << *pa << endl;//输出结果为100
+	return 0;
+}
