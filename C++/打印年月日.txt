@@ -1,0 +1,29 @@
+#include<iostream>
+using namespace std;
+class Date
+{
+public:
+void SetDate(int year, int month, int day)
+{
+_year = year;
+_month = month;
+_day = day;
+}
+void PrintDate()
+{
+cout << _year << "-" << _month << "-" << _day << endl;
+}
+private:
+int _year;
+int _month;
+int _day;
+};
+int main()
+{
+	Date d1, d2;
+	d1.SetDate(2019, 6, 14);
+	d1.PrintDate();
+	d2.SetDate(2008, 9, 7);
+	d2.PrintDate();
+	return 0;
+}
