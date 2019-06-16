@@ -1,0 +1,33 @@
+#include<iostream>
+using namespace std;
+
+class Date {
+public:
+	Date(int year,int month,int day) {
+		year = _year;
+		month = _month;
+		day = _day;
+	}
+	//运算符重载-->函数
+bool operator==(const Date& d) {
+		return _year==d._year&&
+			   _month == d._month&&
+			   _day ==d._day;
+	}
+bool operator!=(const Date& d) {
+	return!(*this == d);
+}
+private:
+	int _year;
+	int _month;
+	int _day;
+};
+
+int main() {
+	Date d1(2019, 6, 16);
+	Date d2(2019, 6, 16);
+	if (d1 == d2) {
+		cout << "同样的年月日" << "\n" << endl;
+	}
+	return 0;
+}
