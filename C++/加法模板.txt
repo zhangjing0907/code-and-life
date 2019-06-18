@@ -1,0 +1,16 @@
+#include<iostream>
+using namespace std;
+
+template<typename T1,class T2>   //模板参数列表  typename可以替换为class
+T1 Add(T1 left, T2 right) {
+	cout << typeid(T1).name() << endl;
+	cout << typeid(T2).name() << endl;
+	return left + right;
+} 																																																											   
+
+int main() {
+	cout << Add<double>(1,(int)2.0) << endl;
+	cout<<Add(1.0, 'a')<<endl;
+	cout<<Add('a', 'b')<<endl;
+	return 0;
+}
