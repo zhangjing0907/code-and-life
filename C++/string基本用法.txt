@@ -13,6 +13,7 @@ int main() {
 	cout << s4 << endl;
 
 	cin >> s1;
+        cout << s1 << endl;
 
 	return 0;
 }
