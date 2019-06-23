@@ -1,0 +1,41 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+int main() {
+	/*string s1;
+
+	getline(cin, s1);//相当于cin>>s1;
+	cout << s1 << endl;
+
+	string s("hello");
+	cout << s << endl;
+	cout << s.size() << endl;//返回有效个数  不包含/0
+	cout << s.length() << endl;//获取有效个数 不包含/0
+	cout << s.capacity() << endl;
+
+	s.clear();
+
+	if (s.empty()) {
+		cout << "empty string" << endl;
+	}
+
+	else {
+		cout << "not empty string" << endl;
+	}
+	*/
+	string s("hello");
+	//s.resize(n,ch); resize将string类中有效字符改变到n个，多出的空间使用ch来填充
+	s.resize(10, '$');
+	cout << s << endl;
+	cout << s.size() << endl;
+	cout << s.capacity() << endl;
+	s.resize(32, 8);
+	cout << s.size() << endl;
+	cout << s.capacity() << endl;
+
+	s.resize(4, 6);
+	cout << s.size() << endl;
+	cout << s.capacity() << endl;
+	return 0;
+}
