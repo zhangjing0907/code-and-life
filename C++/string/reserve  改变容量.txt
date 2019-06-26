@@ -1,0 +1,20 @@
+#include<iostream>
+#include<string>
+using namespace std;
+
+int main() {
+	//reserve 只改变空间的大小 不改变有效元素的个数
+	string s("hello world");
+	cout << s.size() << endl;
+	cout << s.capacity() << endl;
+
+	s.reserve(32);
+	cout << s.size() << endl;
+	cout << s.capacity() << endl;
+
+	s.reserve(5);
+	cout << s.size() << endl;
+	cout << s.capacity() << endl;
+
+	return 0;
+}
