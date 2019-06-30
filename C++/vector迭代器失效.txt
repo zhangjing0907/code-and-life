@@ -1,0 +1,18 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+
+int main() {
+	vector<int>  v{ 0,1,2,3,4,5,6,7,8,9 };
+	//auto it = v.begin();//迭代器失效
+
+	v.push_back(0);//扩容会引起迭代器失效
+	v.push_back(1);
+
+	auto it = v.begin();//解决方式 重新生成迭代器
+	while (it != v.end()) {
+		cout << *it << endl;
+		++it;
+	}
+	return 0;
+}
