@@ -1,0 +1,28 @@
+#include<iostream>
+#include<string>
+using namespace std;
+int main() {
+	int arr[4];
+	for (int a = 0; a < 4; a++) {
+		cin >> arr[a];
+	}
+	int A = 0, B = 0, C = 0, D = 0;
+	for (A = 60; A > -60; A--) {
+		for (B = 60; B > -60; B--) {
+			if (A + B == arr[0]&&A-B==arr[2]) {
+				for (C = 60; C > -60; C--) {
+					if (B + C == arr[1]) {
+						for (D = 60; D > -60; D--) {
+							if (B - D == arr[3]) {
+								printf("A=%d,B=%d,C=%d,D=%d", A, B, C, D);
+								return 0;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	printf("NO");
+	return -1;
+}
