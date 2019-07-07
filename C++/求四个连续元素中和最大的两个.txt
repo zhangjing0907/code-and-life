@@ -1,0 +1,23 @@
+#include<iostream>
+using namespace std;
+int main() {
+	int a = 0, b = 0, c = 0, d = 0;
+	cin >> a >> b >> c >> d;
+	int A = a + b;
+	int B = b + c;
+	int C = c + d;
+	if (A > B) {
+		if (A > C) {
+			printf("%d", C);
+		}
+		else
+			printf("%d", A);
+	}
+	else {
+		if (B > C)
+			printf("%d", B);
+		else
+			printf("%d", C);
+	}
+	return 0;
+}
