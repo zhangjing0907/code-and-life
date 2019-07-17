@@ -1,0 +1,22 @@
+#include<iostream>
+#include<string>
+using namespace std;
+int main() {
+	string a, b, c;
+	getline(cin, a);
+	int i = 0, num = 0;
+	cout << a[0];
+	while (NULL != a[i]) {
+		if (a[i] == *" ") {
+			while (++num != i) {
+				cout << a[num];
+			}
+			cout << "\n";
+		}		
+		++i;
+	}
+	while (++num != i)
+		cout << a[num];
+	cout << "\n" << endl;
+	return 0;
+}
