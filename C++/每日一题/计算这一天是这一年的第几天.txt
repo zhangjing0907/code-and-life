@@ -1,0 +1,52 @@
+#include<iostream>
+using namespace std;
+int main() {
+	int year, month, day;
+	int num = 0;
+	cin >> year;
+	cin >> month;
+	cin >> day;
+	int outDay = 0;
+	int a[12] = { 31,28,31,30,31,30,31,31,30,31,30,31 };
+
+	if (year < 1 || month>12 || month < 1 || day < 1 || day>31) {
+		return -1;
+	}
+
+	else if (month == 4 || month == 6 || month == 9 || month == 11) {
+		if (day > 30)
+			return -1;
+	}
+
+	else if (month == 2) {
+
+		if (year % 4 != 0 || (year % 100 == 0 && year % 400 != 0)) {
+			if (day > 28)
+				return -1;
+		}
+
+		else {
+			if (day > 29) {
+				return -1;
+			}
+		
+		}
+
+	}
+
+	if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0) {
+		if (month < 2)
+			;
+		else 
+			a[1] = a[1] + 1;
+	 }
+		
+
+
+		for (int i = 0; i < month - 1; ++i) {
+			outDay += a[i];
+		}
+	outDay = outDay + day;
+	printf("%d", outDay);
+	return 0;
+}
