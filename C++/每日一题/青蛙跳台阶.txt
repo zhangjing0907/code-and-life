@@ -1,0 +1,18 @@
+#include<iostream>
+using namespace std;
+
+class Solution {
+public:
+	int jumpFloorII(int number) {
+		return pow(2, number - 1);
+	}
+};
+
+int main() {
+	Solution s;
+	int a = 0;
+	while (cin >> a) {
+		cout << s.jumpFloorII(a) << endl;;
+	}
+	return 0;
+}
