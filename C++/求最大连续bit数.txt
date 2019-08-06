@@ -1,0 +1,33 @@
+#include<iostream>
+#include<string>
+#include<algorithm>
+using namespace std;
+int main()
+{
+int n;
+while (cin >> n)
+2
+{
+int count = 0, maxCount = 0;
+// n 右移 32 次就变为 0
+while (n)
+{
+// 获取当前位的二进制值
+if (n & 1)
+{
+// 如果 1 的值连续，计数累加，并且跟新最大计数
+++count;
+maxCount = max(count, maxCount);
+}
+else
+{
+// 如果 1 的值不连续，重新累加
+count = 0;
+}
+// 右移一次，为获取下一位二进制值做准备
+n = n >> 1;
+}
+cout << maxCount << endl;
+}
+return 0;
+}
