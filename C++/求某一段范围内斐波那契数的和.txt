@@ -1,0 +1,20 @@
+#include<iostream>
+using namespace std;
+
+int Fib(int n) {
+	if (n < 3)
+		return 1;
+	else
+		return Fib(n - 1) + Fib(n - 2);
+}
+int main() {
+	int from = 0, to = 0;
+	while (cin >> from >> to) {
+		int count = 0;
+		for (int s = from; s <= to; ++s) {
+			count = count+Fib(s);
+		}
+		cout << count << endl;
+	}
+	return 0;
+}
