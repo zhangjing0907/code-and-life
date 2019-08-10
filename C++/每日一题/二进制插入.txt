@@ -1,0 +1,14 @@
+class BinInsert {
+public:
+int binInsert(int n, int m, int j, int i) {
+m <<= j;
+return n | m;
+}
+};
+#include<iostream>
+#include<algorithm>
+using namespace std;
+//ÅĞ¶ÏËØÊı
+bool isPrime(int num)
+{
+int tmp = sqrt(num);
