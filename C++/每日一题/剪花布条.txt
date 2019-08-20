@@ -1,0 +1,23 @@
+C语言可以通过strstr函数找，用STL的string库可以通过find函数找，找到以后跳过一个T串的长度。例如：在
+abcacbcbcabscbc中找cbc，第一次找到了这个位置：abcacbcbcabscbc，找到这个下标后，会跳过整体cbc，也
+就是从这个位置继续找：abcacbcbcabscbc，否则如果你只跳一个字符，会导致cbcbc会被算成2次，而按照本题
+的题意，应该算一次。
+#include<iostream>
+#include<string>
+int main()
+{
+std::string s, t;
+while (std::cin >> s >> t)
+{
+int res = 0;
+size_t pos = 0;
+//依次在 s 中查找 t 即可，直到再也找不到 t
+while ((pos = s.find(t, pos)) != std::string::npos)
+{
+pos += t.size(); //跳过t串整体的长度
+++res; //计数
+}
+std::cout << res << std::endl;
+}
+return 0;
+}
