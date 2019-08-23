@@ -1,0 +1,4 @@
+﻿  SList.cpp
+E:\2019代码\Project40\SList.cpp(217,13): warning C4326:  “main”的返回类型应为“int”而非“void”
+E:\2019代码\Project40\SList.cpp(125): warning C4715:  “SListFind”: 不是所有的控件路径都返回值
+  Project40.vcxproj -> E:\2019代码\Project40\Debug\Project40.exe
