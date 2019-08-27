@@ -1,0 +1,38 @@
+#include<iostream>
+#include<assert.h>
+using namespace std;
+
+void quicksort(int* a, int left, int right) {
+	assert(a);
+	int i, j, k, tmp;
+	if (left > right)
+		return;
+	tmp = a[left];
+	i = left;
+	j = right;
+	while (i!=j) {
+		while (a[j] >= tmp&&i<j) {
+			j--;
+		}
+		while (a[i] <= tmp&&i<j) {
+			i++;
+		}
+			k = a[i];
+			a[i] = a[j];
+			a[j] = k;
+	}
+	a[left] = a[i];
+	a[i] = tmp;
+	quicksort(a,left, i - 1);//继续处理左边的，这里是一个递归的过程
+	quicksort(a,i + 1, right);//继续处理右边的 ，这里是一个递归的过程
+}
+
+int main() {
+	int arr[] = { 5,2,4,8,6,9,3,5,7,6 };
+	quicksort(arr, 0, sizeof(arr)/4 - 1);
+	for(int d=0;d< sizeof(arr) / 4 - 1;++d) {
+		cout << arr[d]<<" ";
+	}
+	cout << endl;
+	return 0;
+}
