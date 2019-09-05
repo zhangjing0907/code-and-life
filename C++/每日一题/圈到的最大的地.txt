@@ -1,0 +1,14 @@
+有一块很大的地,被划分为无数个1*1的小正方形,从某个点开始,输入半径,求能圈住的正方形个数
+#include<iostream>
+using namespace std;
+
+int main() {
+	int n = 0;
+	while (cin >> n) {
+		if (n < 1)
+			cout << 0 << endl;
+		else
+		cout << (2*n-2) * (2*n-2) << endl;
+	}
+	return 0;
+}
