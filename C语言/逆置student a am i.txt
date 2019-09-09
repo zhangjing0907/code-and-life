@@ -1,0 +1,35 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+void Reverse(char arr[], int left, int right) { //写一个函数实现逆置
+	while (left <= right) {
+		char tmp = arr[left];
+		arr[left] = arr[right];
+		arr[right] = tmp;
+		++left;
+		--right;
+	}
+}
+int main() {
+	char arr[] = "student a am i";
+	int size = strlen(arr);
+	int left = 0;
+	int right = size - 1;
+	Reverse(arr, left, right);   //逆置整个字符串数组
+	printf("逆置整个数组：%s\n", arr);
+	int i = 0;
+	while (i < size) {
+		if (arr[i] != ' ') {
+			left = i;
+			while (arr[i] != ' ' && arr[i] != '\0') {
+				++i;    //通过对空格的判断得到单个单词
+			}
+			right = i - 1;
+		}
+		Reverse(arr, left, right);   // 逆置单个单词
+		++i; //即arr[i]为空格时，i+1进入下次循环
+	}
+	printf("最终结果：%s\n", arr);
+	system("pause");
+	return 0;
+}
