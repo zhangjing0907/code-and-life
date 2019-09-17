@@ -1,0 +1,44 @@
+#include<iostream>
+using namespace std;
+
+void insertasc(char* arr, char a) {
+	int i = strlen(arr)-1;
+	while (i >= 0) {
+		if (a < arr[i]) {
+			arr[i + 1] = arr[i];
+			arr[i] = a;
+			--i;
+		}
+		else
+			break;
+	}
+	printf("ÉıĞò£º%s\n", arr);
+}
+
+void insertdown(char* arr, char a) {
+	int i = strlen(arr) - 1;
+	while (i >= 0) {
+		if (a > arr[i]) {
+			arr[i + 1] = arr[i];
+			arr[i] = a;
+			--i;
+		}
+		else
+			break;
+	}
+	printf("½µĞò£º%s\n", arr);
+}
+
+int main() {
+	char a = 0;
+	char arr1[256] = "123468";
+	char arr2[256] = "864321";
+	while (cin >> a) {
+		if (a == 's') {
+			return -1;
+		}
+		insertasc(arr1, a);
+		insertdown(arr2, a);
+	}
+	return 0;
+}
