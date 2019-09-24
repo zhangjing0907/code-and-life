@@ -1,0 +1,35 @@
+#include<iostream>
+using namespace std;
+
+void swap(char* arr, int left, int right) {
+	while (left < right) {
+		int tmp = arr[left];
+		arr[left] = arr[right];
+		arr[right] = tmp;
+		++left, --right;
+	 }
+}
+
+int main() {
+	char arr[] = "hua ren wang";
+	int size = strlen(arr);
+	int left = 0;
+	int right = size - 1;
+	swap(arr, left, right);
+	int left1 = 0, right1 = right;
+	while (left < right) {
+		if (arr[left] == ' ') {
+			swap(arr, left1, left-1);
+			left1 = left + 1;
+		}
+		if (arr[right] == ' ') {
+			swap(arr, right+1, right1);
+			right1 = right - 1;
+		}
+		++left;
+		--right;
+	}
+	swap(arr, left1, right1);
+	cout << arr << endl;
+	return 0;
+}
